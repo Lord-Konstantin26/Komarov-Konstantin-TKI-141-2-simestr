@@ -13,16 +13,14 @@ Point::Point(const double x, const double y) : x{x}, y{y}
 {
 }
 
-
-/**
-* @brief Ввод координат с клавиатуры.
-*/
-void Point::input()
+double Point::getX() const
 {
-	cout << "Введите значение координаты х: ";
-	cin >> x;
-	cout << "Введите значение координаты y: ";
-	cin >> y;
+	return x;
+}
+
+double Point::getY() const
+{
+	return y;
 }
 
 /**
@@ -31,4 +29,16 @@ void Point::input()
 void Point::print() const
 {
 	cout << "(" << x << ", " << y << ")";
+}
+
+
+bool operator==(const Point& p1, const Point& p2)
+{
+	return abs(p1.getX() - p2.getX()) <= numeric_limits<double>::epsilon()
+		&& abs(p1.getY() - p2.getY()) <= numeric_limits<double>::epsilon();
+}
+
+bool operator!=(const Point& p1, const Point& p2)
+{
+	return !(p1 == p2);
 }

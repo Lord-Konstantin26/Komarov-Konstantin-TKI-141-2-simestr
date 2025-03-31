@@ -6,6 +6,10 @@
 class Point 
 {
 public:
+
+	/**
+	* @brief Координаты x,y точки.
+	*/
 	double x, y;
 	
 	/**
@@ -16,9 +20,16 @@ public:
 	Point(const double x = 0, const double y = 0);
 
 	/**
-	* @brief Ввод координат с клавиатуры.
+	* @brief Функция возврата значения координаты х точки.
+	* @return Возвращает значение координаты х точки
 	*/
-	void input();
+	double getX() const;
+
+	/**
+    * @brief Функция возврата значения координаты х точки.
+    * @return Возвращает значение координаты х точки
+    */
+	double  getY() const;
 
 	/**
 	* @brief Вывод координат точки на экран.
@@ -26,3 +37,16 @@ public:
 	void print() const;
 
 };
+
+/**
+*@brief Функция переопределения оператора == .
+* @return Возвращает результат проверки совпадения точек.
+*/
+bool operator==(const Point& p1, const Point& p2);
+
+/**
+* @brief Функция переопределения оператора !=.
+* @return Возвращает результат проверки несовпадения точек.
+*/
+bool operator!=(const Point& p1, const Point& p2);
+

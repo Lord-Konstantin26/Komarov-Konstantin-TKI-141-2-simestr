@@ -4,41 +4,27 @@
 
 using namespace std;
 
-/**
-* @brief Вычисляет квадрат расстояния между двумя точками.
-* @param a Первая точка.
-* @param b Первая точка.
-* @return Квадрат расстояния между точками a и b.
-*/
-double Square::distanceSquared(const Point& a, const Point& b) const
+double Square::distanceSquared() const
 {
-    double dx = a.x - b.x;
-    double dy = a.y - b.y;
+    double dx = a.getX() - b.getX();
+    double dy = a.getY() - b.getY();
     return dx * dx + dy * dy;
 }
 
-/**
-* @brief Проверяет, лежат ли три точки на одной прямой.
-* @param a Первая точка.
-* @param b Вторая точка.
-* @param c Третья точка.
-* @return true, если точки лежат на одной прямой, иначе false.
-*/
-bool Square::yesCollinear(const Point& a, const Point& b, const Point& c) const
+bool Square::yesCollinear() const
 {
-    double area = a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y);
-    return (area == 0);
+    double area = a.getX() * (b.getY() - c.getY()) + 
+        b.getX() * (c.getY() - a.getY()) + c.getX() * (a.getY() - b.getY());
+    return (abs(area) < numeric_limits<double>::epsilon());
 }
 
-/**
-* @brief Проверяет, образуют ли три точки квадрат.
-* @param a Первая точка.
-* @param b Вторая точка.
-* @param c Третья точка.
-* @return true, если точки образуют квадрат, иначе false.
-*/
-bool Square::yesSquare(const Point& a, const Point& b, const Point& c) const
+bool Square::yesSquare() const
 {
+    if (a == b || a == c || b == c)
+    {
+        cout << "Некоторые точки совпадают!" << endl;
+        return false;
+    }
     if (yesCollinear(a, b, c))
     {
         cout << "Точки лежат на одной прямой!" << endl;
@@ -57,47 +43,40 @@ bool Square::yesSquare(const Point& a, const Point& b, const Point& c) const
     return false; 
 }
 
-/**
-* @brief Находит четвертую точку квадрата по известным трем точкам.
-* @param a Первая точка.
-* @param b Вторая точка.
-* @param c Третья точка.
-*/
-Point Square::findFourthPoint(const Point& a, const Point& b, const Point& c) const
+Point Square::findFourthPoint() const
 {
-    double abx = b.x - a.x;
-    double aby = b.y - a.y;
+    double abx = b.getX() - a.getX();
+    double aby = b.getY() - a.getY();
 
-    double acx = c.x - a.x;
-    double acy = c.y - a.y;
+    double acx = c.getX() - a.getX();
+    double acy = c.getY() - a.getY();
 
     if (abx * acx + aby * acy == 0)
     {
-        return Point(b.x + c.x - a.x, b.y + c.y - a.y);
+        return Point(b.getX() + c.getX() - a.getX(), b.getY() + c.getY() - a.getY());
     }
 
-    double bcx = c.x - b.x;
-    double bcy = c.y - b.y;
+    double bcx = c.getX() - b.getX();
+    double bcy = c.getY() - b.getY();
 
     if (abx * bcx + aby * bcy == 0)
     {
-        return Point(a.x + c.x - b.x, a.y + c.y - b.y);
+        return Point(a.getX() + c.getX() - b.getX(), a.getY() + c.getY() - b.getY());
     }
 
     if (acx * bcx + acy * bcy == 0)
     {
-        return Point(a.x + b.x - c.x, a.y + b.y - c.y);
+        return Point(a.getX() + b.getX() - c.getX(), a.getY() + b.getY() - c.getY());
     }
 
     return Point(0,0);
 }
 
-/**
-* @brief Конструктор для инициализации квдрата тремя точками.
-* @param p1 Первая точка.
-* @param p2 Вторая точка.
-* @param p3 Третья точка.
-*/
+double Square::sideLeinght() const
+{
+    return sqrt(distanceSquared(p1, p2));
+}
+
 Square::Square(Point p1, Point p2, Point p3) : p1(p1), p2(p2), p3(p3)
 {
     if (!yesSquare(p1, p2, p3))
@@ -106,39 +85,25 @@ Square::Square(Point p1, Point p2, Point p3) : p1(p1), p2(p2), p3(p3)
         exit(1);
     }
     p4 = findFourthPoint(p1, p2, p3);
+    side = sideLeinght();
 }
 
-/**
-* @brief Вычисляет длину стороны квадрата.
-* @return Длина стороны квадрата
-*/
-double Square::sideLeinght() const
+
+double Square::getSide() const
 {
-    return sqrt(distanceSquared(p1, p2));
+    return side;
 }
 
-/**
-* @brief Вычисляет периметр квадрата.
-* @return Периметр квалрата.
-*/
 double Square::perimetr() const
 {
-    return 4 * sideLeinght(); 
+    return 4 * side; 
 }
 
-/**
-* @brief Вычисляет площадь квадрата.
-* @return Площадь квадрата.
-*/
 double Square::area() const
 {
-    double side = sideLeinght();
     return side * side;
 }
 
-/**
-* @brief Выводит координаты всех точек квадрата на экран.
-*/
 void Square::printPoints() const
 {
     p1.print(); 

@@ -10,12 +10,17 @@ private:
 	Point p1, p2, p3, p4;
 
 	/**
+	* @brief Сторона квадрата.
+	*/
+	double side;
+
+	/**
 	* @brief Вычисляет квадрат расстояния между двумя точками.
 	* @param a Первая точка.
 	* @param b Первая точка.
 	* @return Квадрат расстояния между точками a и b.
 	*/
-	double distanceSquared(const Point& a, const Point& b) const;
+	double distanceSquared() const;
 
 	/**
 	* @brief Проверяет, лежат ли три точки на одной прямой.
@@ -24,7 +29,7 @@ private:
 	* @param c Третья точка.
 	* @return true, если точки лежат на одной прямой, иначе false.
 	*/
-	bool yesCollinear(const Point& a, const Point& b, const Point& c) const;
+	bool yesCollinear() const;
 
 	/**
 	* @brief Проверяет, образуют ли три точки квадрат.
@@ -33,7 +38,7 @@ private:
 	* @param c Третья точка.
 	* @return true, если точки образуют квадрат, иначе false.
 	*/
-	bool yesSquare(const Point& a, const Point& b, const Point& c) const;
+	bool yesSquare() const;
 
 	/**
 	* @brief Находит четвертую точку квадрата по известным трем точкам.
@@ -41,8 +46,13 @@ private:
 	* @param b Вторая точка.
 	* @param c Третья точка.
 	*/
-	Point findFourthPoint(const Point& a, const Point& b, const Point& c) const;
+	Point findFourthPoint() const;
 
+	/**
+	* @brief Вычисляет длину стороны квадрата.
+	* @return Длина стороны квадрата
+	*/
+	double sideLeinght() const;
 
 public:
 
@@ -55,10 +65,10 @@ public:
 	Square(Point p1, Point p2, Point p3);
 
 	/**
-	* @brief Вычисляет длину стороны квадрата.
-	* @return Длина стороны квадрата
+	* @brief Функция возврата значения длины стороны квадрата.
+	* @return Возвращает значение длины стороны квадрата.
 	*/
-	double sideLeinght() const;
+	double getSide() const;
 
 	/**
 	* @brief Вычисляет периметр квадрата.
