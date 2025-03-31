@@ -7,6 +7,17 @@
 using namespace std;
 
 /**
+* @brief Ввод координат точек с клавиатуры.
+* @param message Сообщение перед вводом.
+*/
+Point getPoint(string message);
+
+/**
+* @brief Функция создание квадрата по трем точкам.
+*/
+Square getSquare();
+
+/**
 * @brief Функция проверки ввода.
 * @return При невернном вводе выводит ошибку и аварийно завершает программу.
 */
@@ -19,40 +30,31 @@ double input();
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-
-	Point p1, p2, p3;
-
-	cout << "Введите координаты первой точки с клавиатуры (x, y): " << endl;
-	double x1 = input();
-	double y1 = input();
-	p1 = Point(x1, y1);
-	cout << "Введите координаты второй точки с клавиатуры (x, y): " << endl;
-	double x2 = input();
-	double y2 = input();
-	p2 = Point(x2, y2);
-	cout << "Введите координаты третьей точки с клавиатуры (x, y): " << endl;
-	double x3 = input();
-	double y3 = input();
-	p3 = Point(x3, y3);
-
-	Square square(p1, p2, p3);
-
+	Square square = getSquare();
 	square.printPoints();
-
 	cout << "Площадь квадрата: " << square.area() << endl;
 	cout << "Периметр квадрата: " << square.perimetr() << endl;
-
 	return 0;
 }
 
-double input()
+Point getPoint(string message)
 {
-	double value = 0.0;
-	cin >> value;
+	cout << message << endl;
+	double x = 0.0;
+	double y = 0.0;
+	cin >> x >> y;
 	if (cin.fail())
 	{
-		cout << "Ошибка ввода!" << endl;
-		exit(0);
+		throw invalid_argument("Введено некорректное значениет");
 	}
-	return value;
+
+	return Point(x, y);
+}
+
+Square getSquare()
+{
+	Point A = getPoint("Введите координаты x и y для первой точки: ");
+	Point B = getPoint("Введите координаты x и y для второй точки: ");
+	Point C = getPoint("Введите координаты x и y для третьей точки: ");
+	return Square(A, B, C);
 }

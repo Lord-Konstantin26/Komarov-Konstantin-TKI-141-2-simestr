@@ -35,9 +35,12 @@ bool Square::yesSquare() const
     double d3 = distanceSquared(a, c);
     double d4 = distanceSquared(b, c);
 
-    if (d2 == d3 && 2 * d2 == d4) return true;
-    if (d2 == d4 && 2 * d2 == d3) return true;
-    if (d3 == d4 && 2 * d3 == d2) return true;
+    if (abs(d2 - d3) < numeric_limits<double>::epsilon() && abs(2 * d2 - d4) 
+        < numeric_limits<double>::epsilon()) return true;
+    if (abs(d2 - d4) < numeric_limits<double>::epsilon() && abs(2 * d2 - d3)
+        < numeric_limits<double>::epsilon()) return true;
+    if (abs(d3 - d4) < numeric_limits<double>::epsilon() && abs(2 * d3 - d2)
+        < numeric_limits<double>::epsilon()) return true;
 
     cout << "Точки не образуют квадрат!" << endl;
     return false; 
