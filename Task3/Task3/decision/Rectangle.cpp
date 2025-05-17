@@ -1,4 +1,4 @@
-#include "Rectangle.h"
+﻿#include "Rectangle.h"
 #include <sstream>
 #include <limits>
 
@@ -36,8 +36,8 @@ string Rectangle::Serialize(const Rectangle& rect) {
 }
 
 Rectangle Rectangle::Deserialize(istream& is) {
-    double x1, y1, x2, y2;
-    char check;
+    double x1 = 0.0, y1 = 0.0, x2 = 0.0, y2 = 0.0;
+    char check = '\0';
 
     if (!(is >> x1 >> y1 >> x2 >> y2)) {
         is.clear();

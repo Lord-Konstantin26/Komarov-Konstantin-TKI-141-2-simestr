@@ -1,4 +1,4 @@
-#include "CppUnitTest.h"
+п»ї#include "CppUnitTest.h"
 #include "../decision/Figure.h"
 #include "../decision/Rectangle.h"
 #include "../decision/Point.h"
@@ -18,18 +18,18 @@ namespace RectangleTests
             Assert::AreEqual(20.0, p.y);
         }
 
-        TEST_METHOD(EqualityOperator_EqualPoints_ReturnsTrue)
+        TEST_METHOD(EqualityOperator_WorksCorrectly)
         {
             Point p1(5, 10);
             Point p2(5, 10);
-            Assert::IsTrue(p1 == p2);
-        }
+            Assert::IsTrue(p1 == p2, L"Equal points should return true");
 
-        TEST_METHOD(EqualityOperator_DifferentPoints_ReturnsFalse)
-        {
-            Point p1(5, 10);
-            Point p2(5, 15);
-            Assert::IsFalse(p1 == p2);
+            Point p3(5, 11);
+            Point p4(6, 10);
+            Point p5(6, 11);
+            Assert::IsFalse(p1 == p3, L"Different Y should return false");
+            Assert::IsFalse(p1 == p4, L"Different X should return false");
+            Assert::IsFalse(p1 == p5, L"Different X and Y should return false");
         }
     };
 
@@ -79,7 +79,7 @@ namespace RectangleTests
                 actualMsg = e.what();
             }
             Assert::AreEqual(expectedMsg, actualMsg,
-                L"Сообщение об ошибке не соответствует ожидаемому");
+                L"РЎРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РѕР¶РёРґР°РµРјРѕРјСѓ");
         }
 
         TEST_METHOD(ToString_ValidRectangle_ReturnsCorrectString)
