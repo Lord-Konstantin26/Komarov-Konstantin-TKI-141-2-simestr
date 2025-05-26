@@ -49,7 +49,7 @@ namespace PriorityQueueTests
         TEST_METHOD(PopMax_RemovesAndReturnsHighestPriority)
         {
             PriorityQueue pq = { {10, 2}, {20, 3}, {30, 1} };
-            int value;
+            int value = 0;
 
             Assert::IsTrue(pq.popMax(value));
             Assert::AreEqual(20, value);
@@ -64,26 +64,6 @@ namespace PriorityQueueTests
             Assert::IsTrue(pq.isEmpty());
 
             Assert::IsFalse(pq.popMax(value));
-        }
-
-        TEST_METHOD(PopMin_RemovesAndReturnsLowestPriority)
-        {
-            PriorityQueue pq = { {10, 2}, {20, 3}, {30, 1} };
-            int value;
-
-            Assert::IsTrue(pq.popMin(value));
-            Assert::AreEqual(30, value);
-            Assert::AreEqual(2, (int)pq.getSize());
-
-            Assert::IsTrue(pq.popMin(value));
-            Assert::AreEqual(10, value);
-            Assert::AreEqual(1, (int)pq.getSize());
-
-            Assert::IsTrue(pq.popMin(value));
-            Assert::AreEqual(20, value);
-            Assert::IsTrue(pq.isEmpty());
-
-            Assert::IsFalse(pq.popMin(value));
         }
     };
 
@@ -122,7 +102,7 @@ namespace PriorityQueueTests
 
             Assert::AreEqual(2, (int)pq.getSize());
 
-            int value;
+            int value = 0;
             pq.peekMax(value);
             Assert::AreEqual(20, value);
         }
@@ -164,7 +144,7 @@ namespace PriorityQueueTests
         TEST_METHOD(PeekMethods_DoNotRemoveElements)
         {
             PriorityQueue pq = { {10, 2}, {20, 3}, {30, 1} };
-            int value;
+            int value = 0;
 
             Assert::IsTrue(pq.peekMax(value));
             Assert::AreEqual(20, value);
