@@ -23,7 +23,7 @@ namespace PriorityQueueTests
             Assert::IsFalse(pq.isEmpty());
             Assert::AreEqual(3, (int)pq.getSize());
 
-            int value;
+            int value = 0;
             pq.peekMax(value);
             Assert::AreEqual(3, value);
         }
@@ -41,7 +41,7 @@ namespace PriorityQueueTests
 
             Assert::AreEqual(3, (int)pq.getSize());
 
-            int value;
+            int value = 0;
             pq.peekMax(value);
             Assert::AreEqual(20, value);
         }
