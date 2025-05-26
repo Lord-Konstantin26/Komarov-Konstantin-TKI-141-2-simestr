@@ -72,7 +72,7 @@ namespace PriorityQueueTests
     public:
         TEST_METHOD(AssignmentOperator_CopiesQueue)
         {
-            PriorityQueue pq1 = { {1, 1}, {2, 2}, {3, 3} };
+            PriorityQueue pq1 = {  {1, 1}, {2, 2}, {3, 3} };
             PriorityQueue pq2;
 
             pq2 = pq1;
